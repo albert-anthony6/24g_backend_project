@@ -259,7 +259,6 @@ export const deleteUser = async (req: Request, res: Response) => {
       return;
     }
 
-    // Assuming you have a function like updateExistingUser in your code
     const user = await deleteExistingUser(id);
 
     if (user === 'not-found') {
