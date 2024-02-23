@@ -45,7 +45,9 @@ export const getUsers = async (req: Request, res: Response) => {
       res.status(200).json(users);
     }
   } catch (error: any) {
-    console.error('Error getting users:', error.message);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error getting users:', error.message);
+    }
     res.status(500).send('Internal Server Error');
   }
 };
@@ -95,7 +97,9 @@ export const createUser = async (req: Request, res: Response) => {
     const user = await createNewUser(firstName, lastName);
     res.status(200).json(user);
   } catch (error: any) {
-    console.error('Error creating users:', error.message);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error creating users:', error.message);
+    }
     res.status(500).send('Internal Server Error');
   }
 };
@@ -143,7 +147,9 @@ export const getUser = async (req: Request, res: Response) => {
       res.status(200).json(user);
     }
   } catch (error: any) {
-    console.error('Error getting user:', error.message);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error getting user:', error.message);
+    }
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
@@ -213,7 +219,9 @@ export const updateUser = async (req: Request, res: Response) => {
       res.status(200).json(updatedUser);
     }
   } catch (error: any) {
-    console.error('Error updating user:', error.message);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error updating user:', error.message);
+    }
     res.status(500).json({
       status: 'error',
       message: 'Internal Server Error',
@@ -260,7 +268,9 @@ export const deleteUser = async (req: Request, res: Response) => {
       res.status(200).json();
     }
   } catch (error: any) {
-    console.error('Error deleting user:', error.message);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error deleting user:', error.message);
+    }
     res.status(500).json({
       status: 'error',
       message: 'Internal Server Error',
