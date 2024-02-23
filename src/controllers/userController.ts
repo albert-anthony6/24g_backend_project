@@ -39,7 +39,6 @@ import {
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const users = await getAllUsers();
-    // res.send(users);
     if (users === null) {
       res.status(404).json({ message: 'Users not found' });
     } else {
@@ -95,7 +94,6 @@ export const createUser = async (req: Request, res: Response) => {
     }
     const user = await createNewUser(firstName, lastName);
     res.status(200).json(user);
-    // res.send(user);
   } catch (error: any) {
     console.error('Error creating users:', error.message);
     res.status(500).send('Internal Server Error');
