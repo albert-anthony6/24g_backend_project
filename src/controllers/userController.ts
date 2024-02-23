@@ -210,7 +210,6 @@ export const updateUser = async (req: Request, res: Response) => {
       return;
     }
 
-    // Assuming you have a function like updateExistingUser in your code
     const updatedUser = await updateExistingUser(id, firstName, lastName);
 
     if (updatedUser === null) {
