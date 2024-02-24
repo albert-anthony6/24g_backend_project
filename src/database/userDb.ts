@@ -60,7 +60,7 @@ export async function createNewUser(firstName: string, lastName: string) {
     );
 
     const id = result.insertId;
-    return getSingleUser(id);
+    return id;
   } catch (error: any) {
     if (process.env.NODE_ENV === 'development') {
       console.error('Error creating user:', error.message);

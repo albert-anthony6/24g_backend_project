@@ -70,19 +70,12 @@ export const getUsers = async (req: Request, res: Response) => {
  *               lastName:
  *                 type: string
  *     responses:
- *       200:
+ *       201:
  *         description: Successful response
  *         content:
  *           application/json:
  *             example:
- *               [
- *                 {
- *                   "id": 1,
- *                   "firstName": "John",
- *                   "lastName": "Doe",
- *                   "created": "2024-02-23T07:44:54.000Z"
- *                 },
- *               ]
+ *               1
  */
 export const createUser = async (req: Request, res: Response) => {
   try {
@@ -95,7 +88,7 @@ export const createUser = async (req: Request, res: Response) => {
       return;
     }
     const user = await createNewUser(firstName, lastName);
-    res.status(200).json(user);
+    res.status(201).json(user);
   } catch (error: any) {
     if (process.env.NODE_ENV === 'development') {
       console.error('Error creating users:', error.message);
@@ -179,17 +172,12 @@ export const getUser = async (req: Request, res: Response) => {
  *               lastName:
  *                 type: string
  *     responses:
- *       200:
+ *       204:
  *         description: Successful response
  *         content:
  *           application/json:
  *             example:
- *               {
- *                 "id": 1,
- *                 "firstName": "UpdatedFirstName",
- *                 "lastName": "UpdatedLastName",
- *                 "created": "2024-02-23T07:44:54.000Z"
- *               }
+ *               null
  */
 export const updateUser = async (req: Request, res: Response) => {
   try {
@@ -215,7 +203,7 @@ export const updateUser = async (req: Request, res: Response) => {
     if (updatedUser === null) {
       res.status(404).json({ message: 'User not found' });
     } else {
-      res.status(200).json(updatedUser);
+      res.status(204).json();
     }
   } catch (error: any) {
     if (process.env.NODE_ENV === 'development') {
@@ -242,7 +230,7 @@ export const updateUser = async (req: Request, res: Response) => {
  *         schema:
  *           type: number
  *     responses:
- *       200:
+ *       204:
  *         description: Successful response
  *         content:
  *           application/json:
@@ -263,7 +251,7 @@ export const deleteUser = async (req: Request, res: Response) => {
     if (user === 'not-found') {
       res.status(404).json({ message: 'User not found' });
     } else {
-      res.status(200).json();
+      res.status(204).json();
     }
   } catch (error: any) {
     if (process.env.NODE_ENV === 'development') {
